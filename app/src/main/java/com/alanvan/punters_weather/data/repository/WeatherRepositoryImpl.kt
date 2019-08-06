@@ -17,4 +17,16 @@ class WeatherRepositoryImpl: WeatherRepository {
         }
     }
 
+    override fun onGetWeatherDataByAlphabet(sortedAscending: Boolean): Observable<List<VenueWeatherData>> {
+        return localDataSource.onGetWeatherDataByAlphabet(sortedAscending)
+    }
+
+    override fun onGetWeatherDataByTemperature(sortedAscending: Boolean): Observable<List<VenueWeatherData>> {
+        return localDataSource.onGetWeatherDataByTemperature(sortedAscending)
+    }
+
+    override fun onGetWeatherDataByLastUpdated(sortedAscending: Boolean): Observable<List<VenueWeatherData>> {
+        return localDataSource.onGetWeatherDataByLastUpdated(sortedAscending)
+    }
+
 }

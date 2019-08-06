@@ -40,7 +40,7 @@ class Sport {
         return description
     }
 
-    fun setDescription(description: String) {
+    fun setDescription(description: String?) {
         this.description = description
     }
 

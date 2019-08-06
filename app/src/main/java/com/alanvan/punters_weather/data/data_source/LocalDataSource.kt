@@ -1,5 +1,6 @@
 package com.alanvan.punters_weather.data.data_source
 
+import com.alanvan.punters_weather.data.dao.WeatherDao
 import com.alanvan.punters_weather.data.model.Country
 import com.alanvan.punters_weather.data.model.Sport
 import com.alanvan.punters_weather.data.model.VenueWeatherData
@@ -53,8 +54,16 @@ class LocalDataSource {
         }
     }
 
-    fun getVenueWeatherData(): Observable<List<VenueWeatherData>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    fun onGetWeatherDataByAlphabet(sortedAscending: Boolean): Observable<List<VenueWeatherData>> {
+        return Observable.fromCallable { weatherDao.onGetWeatherDataByAlphabet(sortedAscending) }
+    }
+
+    fun onGetWeatherDataByTemperature(sortedAscending: Boolean): Observable<List<VenueWeatherData>> {
+        return Observable.fromCallable { weatherDao.onGetWeatherDataByTemperature(sortedAscending) }
+    }
+
+    fun onGetWeatherDataByLastUpdated(sortedAscending: Boolean): Observable<List<VenueWeatherData>> {
+        return Observable.fromCallable { weatherDao.onGetWeatherDataByLastUpdated(sortedAscending) }
     }
 
     fun getVenueWeather(venueId: Int): Observable<VenueWeatherData> {

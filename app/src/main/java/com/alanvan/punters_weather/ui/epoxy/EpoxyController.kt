@@ -1,19 +1,23 @@
 package com.alanvan.punters_weather.ui.epoxy
 
 import com.airbnb.epoxy.AsyncEpoxyController
-import com.airbnb.epoxy.EpoxyHolder
+import com.alanvan.punters_weather.data.model.VenueWeatherData
 
-class EpoxyController<T: EpoxyHolder> : AsyncEpoxyController() {
+class EpoxyController : AsyncEpoxyController() {
 
-    private var models: List<BaseEpoxyModel<T>> = ArrayList()
+    private var dataList: List<VenueWeatherData> = ArrayList()
 
     override fun buildModels() {
-        models.forEach {
-            it.addTo(this)
+        dataList.forEach {
+            VenueWeatherEpoxyModel_()
+                    .id(it.getVenueID())
+                    .venueTemperature(it.getWeatherTemp())
+                    .venueCondition(it.getWeatherCondition())
+                    .venueName(it.getName()).addTo(this)
         }
     }
 
-    fun setModels(models: List<BaseEpoxyModel<T>>) {
-        this.models = models
+    fun setData(data: List<VenueWeatherData>) {
+        this.dataList = data
     }
 }

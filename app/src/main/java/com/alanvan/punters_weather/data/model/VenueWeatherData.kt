@@ -125,7 +125,7 @@ class VenueWeatherData {
         return weatherCondition
     }
 
-    fun setWeatherCondition(weatherCondition: String) {
+    fun setWeatherCondition(weatherCondition: String?) {
         this.weatherCondition = weatherCondition
     }
 
@@ -133,7 +133,7 @@ class VenueWeatherData {
         return weatherConditionIcon
     }
 
-    fun setWeatherConditionIcon(weatherConditionIcon: String) {
+    fun setWeatherConditionIcon(weatherConditionIcon: String?) {
         this.weatherConditionIcon = weatherConditionIcon
     }
 
@@ -141,7 +141,7 @@ class VenueWeatherData {
         return weatherWind
     }
 
-    fun setWeatherWind(weatherWind: String) {
+    fun setWeatherWind(weatherWind: String?) {
         this.weatherWind = weatherWind
     }
 
@@ -149,7 +149,7 @@ class VenueWeatherData {
         return weatherHumidity
     }
 
-    fun setWeatherHumidity(weatherHumidity: String) {
+    fun setWeatherHumidity(weatherHumidity: String?) {
         this.weatherHumidity = weatherHumidity
     }
 
@@ -157,7 +157,7 @@ class VenueWeatherData {
         return weatherTemp
     }
 
-    fun setWeatherTemp(weatherTemp: String) {
+    fun setWeatherTemp(weatherTemp: String?) {
         this.weatherTemp = weatherTemp
     }
 
@@ -165,7 +165,7 @@ class VenueWeatherData {
         return weatherFeelsLike
     }
 
-    fun setWeatherFeelsLike(weatherFeelsLike: String) {
+    fun setWeatherFeelsLike(weatherFeelsLike: String?) {
         this.weatherFeelsLike = weatherFeelsLike
     }
 

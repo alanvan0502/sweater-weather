@@ -21,6 +21,10 @@ android {
     }
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -38,10 +42,12 @@ dependencies {
 
     implementation 'com.android.support:multidex:1.0.3'
 
+    //Android lifecycle
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+
     //Epoxy
     implementation 'com.airbnb.android:epoxy:2.19.0'
-    implementation 'com.airbnb.android:epoxy-databinding:2.19.0'
-    annotationProcessor 'com.airbnb.android:epoxy-processor:2.19.0'
+    kapt 'com.airbnb.android:epoxy-processor:2.19.0'
 
     //Dagger2
     implementation 'com.google.dagger:dagger:2.21'

@@ -3,4 +3,7 @@
     <string name="alphabetical_title">A-Z</string>
     <string name="temperature_title">Temperature</string>
     <string name="last_updated_title">Last updated</string>
+    <string name="venue_name">Venue Name</string>
+    <string name="venue_condition">Condition</string>
+    <string name="venue_temperature">0℃</string>
 </resources>

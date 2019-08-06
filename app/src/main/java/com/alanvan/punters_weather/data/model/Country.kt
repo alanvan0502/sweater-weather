@@ -40,7 +40,7 @@ class Country {
         return name
     }
 
-    fun setName(name: String) {
+    fun setName(name: String?) {
         this.name = name
     }
 
