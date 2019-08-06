@@ -4,13 +4,16 @@ import com.alanvan.punters_weather.data.model.VenueWeatherData
 import com.alanvan.punters_weather.injection.Injector
 import io.reactivex.Observable
 
-class RemoteDataSource : DataSource {
+class RemoteDataSource {
 
     companion object {
-        private var sInstance: DataSource? = null
+
+        @Volatile
+        private var sInstance: RemoteDataSource? = null
+
         private val LOCK = Object()
 
-        fun getInstance(): DataSource {
+        fun getInstance(): RemoteDataSource {
             return synchronized(LOCK) {
                 if (sInstance == null) {
                     sInstance = RemoteDataSource()
@@ -20,11 +23,20 @@ class RemoteDataSource : DataSource {
         }
     }
 
-    override fun getVenueWeatherData(): Observable<List<VenueWeatherData>> {
-        return Injector.getAppComponent().weatherEndPoint().loadData().map { it.getData() }
-    }
-
-    override fun getVenueWeather(venueId: Int): Observable<VenueWeatherData> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    fun syncWeatherData(): Observable<List<VenueWeatherData>> {
+        return Injector.getAppComponent().weatherEndPoint().loadData()
+            .map { it.getData() }.map {
+                it.forEach { venueData ->
+                    venueData.apply {
+                        getSport()?.getSportID()?.let { id ->
+                            setSportID(id)
+                        }
+                        getCountry()?.getCountryID()?.let { id ->
+                            setCountryID(id)
+                        }
+                    }
+                }
+                return@map it
+            }
     }
 }

@@ -5,5 +5,5 @@ import io.reactivex.Observable
 
 interface WeatherRepository {
 
-    fun getVenueWeatherData(): Observable<List<VenueWeatherData>>
+    fun syncWeatherData(): Observable<Boolean>
 }
