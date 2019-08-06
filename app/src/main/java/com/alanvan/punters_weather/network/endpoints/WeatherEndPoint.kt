@@ -1,6 +1,6 @@
 package com.alanvan.punters_weather.network.endpoints
 
-import com.alanvan.punters_weather.model.VenueWeatherData
+import com.alanvan.punters_weather.data.model.Data
 import io.reactivex.Observable
 import retrofit2.http.GET
 
@@ -11,5 +11,5 @@ interface WeatherEndPoint {
     }
 
     @GET("/venues/weather.json")
-    fun loadData(): Observable<List<VenueWeatherData>>
+    fun loadData(): Observable<Data>
 }

@@ -2,8 +2,8 @@ package com.alanvan.punters_weather.injection.module
 
 import com.alanvan.punters_weather.network.endpoints.WeatherEndPoint
 import com.alanvan.punters_weather.network.service.NetworkServiceFactory
-import com.alanvan.punters_weather.repository.RepositoryManager
-import com.alanvan.punters_weather.repository.WeatherRepository
+import com.alanvan.punters_weather.data.repository.RepositoryManager
+import com.alanvan.punters_weather.data.repository.WeatherRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

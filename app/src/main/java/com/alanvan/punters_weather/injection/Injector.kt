@@ -10,7 +10,7 @@ import com.alanvan.punters_weather.injection.module.AppServiceModule
 
 class Injector(application: Application) {
 
-    private var appComponent: AppComponent? = null
+    private lateinit var appComponent: AppComponent
     private val contextComponent: ContextComponent = DaggerContextComponent.builder()
         .appContextModule(AppContextModule(application.applicationContext))
         .build()
@@ -29,6 +29,10 @@ class Injector(application: Application) {
 
         fun getContextComponent(): ContextComponent {
             return sInstance.contextComponent
+        }
+
+        fun getAppComponent(): AppComponent {
+            return sInstance.appComponent
         }
 
     }

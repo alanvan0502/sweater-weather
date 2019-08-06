@@ -1,4 +1,4 @@
-package com.alanvan.punters_weather.repository
+package com.alanvan.punters_weather.data.repository
 
 object RepositoryManager {
 
