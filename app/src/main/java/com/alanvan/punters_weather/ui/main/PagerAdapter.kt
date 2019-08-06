@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import com.alanvan.punters_weather.ui.main.alphabet.AlphabeticalFragment
+import com.alanvan.punters_weather.ui.main.last_updated.LastUpdatedFragment
+import com.alanvan.punters_weather.ui.main.temperature.TemperatureFragment
 
 class PagerAdapter(fragmentManager: FragmentManager, private val numOfTabs: Int) : FragmentStatePagerAdapter(fragmentManager) {
 

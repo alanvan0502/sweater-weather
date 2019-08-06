@@ -5,5 +5,6 @@
     <string name="last_updated_title">Last updated</string>
     <string name="venue_name">Venue Name</string>
     <string name="venue_condition">Condition</string>
+    <string name="venue_condition_unknown">Condition Unknown</string>
     <string name="venue_temperature">0℃</string>
 </resources>
