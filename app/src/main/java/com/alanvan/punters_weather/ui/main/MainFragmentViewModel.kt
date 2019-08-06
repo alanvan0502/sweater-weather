@@ -7,7 +7,7 @@ import io.reactivex.Observable
 
 abstract class MainFragmentViewModel: ViewModel() {
 
-    var sortedAscending: Boolean = false
+    var sortedAscending: Boolean = true
 
     protected val weatherRepository = Injector.getAppComponent().repositoryManager().getWeatherRepository()
 

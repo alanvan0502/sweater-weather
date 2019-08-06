@@ -6,6 +6,7 @@ import com.alanvan.punters_weather.RxFragment
 import com.alanvan.punters_weather.utils.RxUtils
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import kotlinx.android.synthetic.main.fragment_temperature.*
 
 abstract class MainFragment : RxFragment() {
 
