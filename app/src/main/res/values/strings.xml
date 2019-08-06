@@ -8,5 +8,7 @@
     <string name="venue_condition_unknown">Condition Unknown</string>
     <string name="venue_temperature">0℃</string>
     <string name="sort_descending">Sort descending</string>
-    <string name="sort_ascending">Sort Ascending</string>
+    <string name="sort_ascending">Sort ascending</string>
+    <string name="clear_filter">Clear filter</string>
+    <string name="action_filter">Filter</string>
 </resources>

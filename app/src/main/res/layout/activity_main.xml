@@ -41,6 +41,7 @@
     <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_above="@id/action_filter"
             android:layout_below="@id/tab_layout">
 
         <android.support.v4.widget.SwipeRefreshLayout
@@ -62,6 +63,33 @@
                 style="@style/CircularProgressBar"
                 android:visibility="gone"/>
     </FrameLayout>
+
+    <LinearLayout
+            android:id="@+id/action_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical"
+            android:background="@android:color/white">
+
+        <View android:layout_width="match_parent"
+              android:layout_height="2dp"
+              android:background="@drawable/divider_gradient"
+              app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/action_filter"
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp"
+                android:layout_margin="0dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground"/>
+    </LinearLayout>
 
 
 </RelativeLayout>

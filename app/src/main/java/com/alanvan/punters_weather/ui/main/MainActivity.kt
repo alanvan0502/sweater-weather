@@ -12,6 +12,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ProgressBar
+import android.widget.TextView
 import com.alanvan.punters_weather.R
 import com.alanvan.punters_weather.utils.RxUtils
 import io.reactivex.disposables.CompositeDisposable
@@ -23,9 +24,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager
     private lateinit var viewPagerContainer: SwipeRefreshLayout
+    private lateinit var filterButton: TextView
     private lateinit var progressBar: ProgressBar
     private lateinit var pagerAdapter: PagerAdapter
     private lateinit var viewModel: MainActivityViewModel
+
+    private var showLoading = false
+
     private val bag = CompositeDisposable()
 
     @SuppressLint("CheckResult")
@@ -80,6 +85,15 @@ class MainActivity : AppCompatActivity() {
         viewPagerContainer.setOnRefreshListener {
             bag.add(syncWeatherData())
         }
+
+        // setup filter button
+        filterButton = findViewById(R.id.action_filter)
+        filterButton.setOnClickListener {
+            if (showLoading || viewPagerContainer.isRefreshing) {
+                return@setOnClickListener
+            }
+            // add filter dialog fragment here
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -111,6 +125,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showLoading(show: Boolean) {
+        showLoading = show
         if (show) {
             progressBar.visibility = View.VISIBLE
             viewPagerContainer.visibility = View.GONE
