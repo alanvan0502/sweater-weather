@@ -5,17 +5,24 @@ import android.view.View
 import com.alanvan.punters_weather.RxFragment
 import com.alanvan.punters_weather.utils.RxUtils
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 
 abstract class MainFragment : RxFragment() {
 
     private val bag = CompositeDisposable()
     open val epoxyController = MainEpoxyController()
-    open var viewModel: MainViewModel? = null
+    open var viewModel: MainFragmentViewModel? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel?.let {
-            it.loadDataFromRepository(true).map { dataList ->
+            loadDataAndBuildEpoxy(it.sortedAscending)
+        }
+    }
+
+    private fun loadDataAndBuildEpoxy(sortedAscending: Boolean): Disposable? {
+        return viewModel?.let {
+            it.loadDataFromRepository(sortedAscending).map { dataList ->
                 epoxyController.setData(dataList)
                 epoxyController.requestModelBuild()
             }.compose(RxUtils.applyIOSchedulers()).subscribe({
@@ -23,8 +30,13 @@ abstract class MainFragment : RxFragment() {
             }, {
                 // TODO: handle case no data or fail
             })
-        }?.also {
-            bag.add(it)
+        }
+    }
+
+    fun setSortOrder(sortedAscending: Boolean) {
+        viewModel?.setSortOrder(sortedAscending)
+        viewModel?.let {
+            loadDataAndBuildEpoxy(it.sortedAscending)
         }
     }
 

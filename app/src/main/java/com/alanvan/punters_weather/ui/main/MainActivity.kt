@@ -1,12 +1,18 @@
 package com.alanvan.punters_weather.ui.main
 
 import android.annotation.SuppressLint
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.design.widget.TabLayout
+import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.view.Menu
+import android.view.MenuItem
 import com.alanvan.punters_weather.R
+import com.alanvan.punters_weather.utils.RxUtils
+import io.reactivex.disposables.CompositeDisposable
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,16 +20,21 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager
     private lateinit var pagerAdapter: PagerAdapter
+    private lateinit var viewModel: MainActivityViewModel
+    private val bag = CompositeDisposable()
 
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        viewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
 
+        // setup toolbar
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.title = ""
 
+        // setup tabLayout
         tabLayout = findViewById<TabLayout>(R.id.tab_layout).apply {
             addTab(this.newTab().setText(context.getString(R.string.alphabetical_title)))
             addTab(this.newTab().setText(context.getString(R.string.temperature_title)))
@@ -51,5 +62,42 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+
+        // sync weather data
+        bag.add(
+            viewModel.syncWeatherData().compose(RxUtils.applyIOSchedulers()).subscribe({
+                //TODO: handle
+            }, {
+                //TODO: handle
+            })
+        )
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_sort_descending -> {
+                supportFragmentManager.fragments.forEach {
+                    (it as? MainFragment)?.setSortOrder(false)
+                }
+            }
+            else -> {
+                supportFragmentManager.fragments.forEach {
+                    (it as? MainFragment)?.setSortOrder(true)
+                }
+            }
+        }
+        return true
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (!bag.isDisposed) {
+            bag.dispose()
+        }
     }
 }

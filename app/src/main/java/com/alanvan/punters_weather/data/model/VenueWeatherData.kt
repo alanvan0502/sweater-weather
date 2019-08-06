@@ -5,7 +5,6 @@ import android.arch.persistence.room.Entity
 import android.arch.persistence.room.Ignore
 import android.arch.persistence.room.PrimaryKey
 import android.support.annotation.NonNull
-import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = VenueWeatherData.TABLE_NAME)
@@ -30,17 +29,14 @@ class VenueWeatherData {
     @NonNull
     @ColumnInfo(name = COLUMN_VENUE_ID)
     @SerializedName("_venueID")
-    @Expose
     private lateinit var venueID: String
 
     @ColumnInfo(name = COLUMN_NAME)
     @SerializedName("_name")
-    @Expose
     private var name: String? = null
 
     @Ignore
     @SerializedName("_country")
-    @Expose
     private var country: Country? = null
 
     @ColumnInfo(name = COLUMN_COUNTRY_ID)
@@ -48,37 +44,30 @@ class VenueWeatherData {
 
     @ColumnInfo(name = COLUMN_WEATHER_CONDITION)
     @SerializedName("_weatherCondition")
-    @Expose
     private var weatherCondition: String? = null
 
     @ColumnInfo(name = COLUMN_WEATHER_CONDITION_ICON)
     @SerializedName("_weatherConditionIcon")
-    @Expose
     private var weatherConditionIcon: String? = null
 
     @ColumnInfo(name = COLUMN_WEATHER_WIND)
     @SerializedName("_weatherWind")
-    @Expose
     private var weatherWind: String? = null
 
     @ColumnInfo(name = COLUMN_WEATHER_HUMIDITY)
     @SerializedName("_weatherHumidity")
-    @Expose
     private var weatherHumidity: String? = null
 
     @ColumnInfo(name = COLUMN_WEATHER_TEMP)
     @SerializedName("_weatherTemp")
-    @Expose
-    private var weatherTemp: String? = null
+    private var weatherTemp: Int? = null
 
     @ColumnInfo(name = COLUMN_WEATHER_FEELS_LIKE)
     @SerializedName("_weatherFeelsLike")
-    @Expose
     private var weatherFeelsLike: String? = null
 
     @Ignore
     @SerializedName("_sport")
-    @Expose
     private var sport: Sport? = null
 
     @ColumnInfo(name = COLUMN_SPORT_ID)
@@ -86,7 +75,6 @@ class VenueWeatherData {
 
     @ColumnInfo(name = COLUMN_WEATHER_LAST_UPDATED)
     @SerializedName("_weatherLastUpdated")
-    @Expose
     private var weatherLastUpdated: Int? = null
 
     fun getVenueID(): String {
@@ -153,11 +141,11 @@ class VenueWeatherData {
         this.weatherHumidity = weatherHumidity
     }
 
-    fun getWeatherTemp(): String? {
+    fun getWeatherTemp(): Int? {
         return weatherTemp
     }
 
-    fun setWeatherTemp(weatherTemp: String?) {
+    fun setWeatherTemp(weatherTemp: Int?) {
         this.weatherTemp = weatherTemp
     }
 

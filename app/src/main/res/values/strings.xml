@@ -7,4 +7,6 @@
     <string name="venue_condition">Condition</string>
     <string name="venue_condition_unknown">Condition Unknown</string>
     <string name="venue_temperature">0℃</string>
+    <string name="sort_descending">Sort descending</string>
+    <string name="sort_ascending">Sort Ascending</string>
 </resources>

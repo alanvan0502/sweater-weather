@@ -4,7 +4,6 @@ import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 import android.support.annotation.NonNull
-import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = Sport.TABLE_NAME)
@@ -20,12 +19,10 @@ class Sport {
     @NonNull
     @ColumnInfo(name = COLUMN_SPORT_ID)
     @SerializedName("_sportID")
-    @Expose
     private lateinit var sportID: String
 
     @ColumnInfo(name = COLUMN_DESCRIPTION)
     @SerializedName("_description")
-    @Expose
     private var description: String? = null
 
     fun getSportID(): String {
