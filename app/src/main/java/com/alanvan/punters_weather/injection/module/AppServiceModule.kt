@@ -13,19 +13,19 @@ class AppServiceModule {
 
     @Provides
     @Singleton
-    internal fun provideWeatherRepository(): WeatherRepository {
+    fun provideWeatherRepository(): WeatherRepository {
         return RepositoryManager.getWeatherRepository()
     }
 
     @Provides
     @Singleton
-    internal fun provideNetworkService(): WeatherEndPoint {
+    fun provideNetworkService(): WeatherEndPoint {
         return NetworkServiceFactory.createService(WeatherEndPoint::class.java, WeatherEndPoint.END_POINT)
     }
 
     @Provides
     @Singleton
-    internal fun provideRepositoryManager(): RepositoryManager {
+    fun provideRepositoryManager(): RepositoryManager {
         return RepositoryManager
     }
 }
