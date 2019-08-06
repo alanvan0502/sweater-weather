@@ -1,10 +1,11 @@
 package com.alanvan.punters_weather.ui.epoxy
 
 import com.airbnb.epoxy.AsyncEpoxyController
+import com.airbnb.epoxy.EpoxyHolder
 
-class EpoxyController : AsyncEpoxyController() {
+class EpoxyController<T: EpoxyHolder> : AsyncEpoxyController() {
 
-    private var models: List<BaseEpoxyModel> = ArrayList()
+    private var models: List<BaseEpoxyModel<T>> = ArrayList()
 
     override fun buildModels() {
         models.forEach {
@@ -12,7 +13,7 @@ class EpoxyController : AsyncEpoxyController() {
         }
     }
 
-    fun setModels(models: List<BaseEpoxyModel>) {
+    fun setModels(models: List<BaseEpoxyModel<T>>) {
         this.models = models
     }
 }

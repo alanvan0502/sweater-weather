@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">PuntersWeather</string>
+    <string name="app_name">Weather</string>
+    <string name="alphabetical_title">A-Z</string>
+    <string name="temperature_title">Temperature</string>
+    <string name="last_updated_title">Last updated</string>
 </resources>
