@@ -53,16 +53,38 @@ class LocalDataSource {
         }
     }
 
-    fun onGetWeatherDataSortedByAlphabet(sortedAscending: Boolean): Observable<List<VenueWeatherData>> {
-        return Observable.fromCallable { weatherDao.getWeatherDataSortedByAlphabet(sortedAscending) }
+    fun onGetWeatherDataSortedByAlphabet(sortedAscending: Boolean, countryId: String?): Observable<List<VenueWeatherData>> {
+        return Observable.fromCallable {
+            return@fromCallable if (countryId == null) {
+                weatherDao.getWeatherDataSortedByAlphabet(sortedAscending)
+            } else {
+                weatherDao.getWeatherDataSortedByAlphabetFiltered(sortedAscending, countryId)
+            }
+        }
     }
 
-    fun onGetWeatherDataSortedByTemperature(sortedAscending: Boolean): Observable<List<VenueWeatherData>> {
-        return Observable.fromCallable { weatherDao.getWeatherDataSortedByTemperature(sortedAscending) }
+    fun onGetWeatherDataSortedByTemperature(sortedAscending: Boolean, countryId: String?): Observable<List<VenueWeatherData>> {
+        return Observable.fromCallable {
+            return@fromCallable if (countryId == null) {
+                weatherDao.getWeatherDataSortedByTemperature(sortedAscending)
+            } else {
+                weatherDao.getWeatherDataSortedByTemperatureFiltered(sortedAscending, countryId)
+            }
+        }
     }
 
-    fun onGetWeatherDataSortedByLastUpdated(sortedAscending: Boolean): Observable<List<VenueWeatherData>> {
-        return Observable.fromCallable { weatherDao.getWeatherDataSortedByByLastUpdated(sortedAscending) }
+    fun onGetWeatherDataSortedByLastUpdated(sortedAscending: Boolean, countryId: String?): Observable<List<VenueWeatherData>> {
+        return Observable.fromCallable {
+            return@fromCallable if (countryId == null) {
+                weatherDao.getWeatherDataSortedByByLastUpdated(sortedAscending)
+            } else {
+                weatherDao.getWeatherDataSortedByByLastUpdatedFiltered(sortedAscending, countryId)
+            }
+        }
+    }
+
+    fun onGetWeatherData(): Observable<List<VenueWeatherData>> {
+        return Observable.fromCallable { weatherDao.getWeatherData() }
     }
 
     fun getVenueWeather(venueId: Int): Observable<VenueWeatherData> {
@@ -71,5 +93,9 @@ class LocalDataSource {
 
     fun onGetAllCountries(): Observable<List<Country>> {
         return Observable.fromCallable { countryDao.getAllCountries() }
+    }
+
+    fun onGetWeatherDataByCountryId(countryId: String): Observable<List<VenueWeatherData>> {
+        return Observable.fromCallable { weatherDao.getWeatherDataByCountryId(countryId) }
     }
 }

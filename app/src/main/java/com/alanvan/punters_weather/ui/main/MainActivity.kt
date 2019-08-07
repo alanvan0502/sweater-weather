@@ -13,8 +13,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.ProgressBar
-import android.widget.RelativeLayout
-import android.widget.TextView
 import com.alanvan.punters_weather.R
 import com.alanvan.punters_weather.ui.main.filter.FilterDialogFragment
 import com.alanvan.punters_weather.utils.RxUtils
@@ -31,6 +29,22 @@ class MainActivity : AppCompatActivity() {
     private lateinit var progressBar: ProgressBar
     private lateinit var pagerAdapter: PagerAdapter
     private lateinit var viewModel: MainActivityViewModel
+
+    var sortedAscending: Boolean?
+        get() {
+            return viewModel.sortedAscending
+        }
+        set(value) {
+            viewModel.sortedAscending = value
+        }
+
+    var countryId: String?
+        get() {
+            return viewModel.countryId
+        }
+        set(value) {
+            viewModel.countryId = value
+        }
 
     private var showLoading = false
 
@@ -116,13 +130,15 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_sort_descending -> {
+                viewModel.sortedAscending = false
                 supportFragmentManager.fragments.forEach {
-                    (it as? MainFragment)?.setSortOrder(false)
+                    (it as? MainFragment)?.loadDataAndBuildModel()
                 }
             }
             else -> {
+                viewModel.sortedAscending = true
                 supportFragmentManager.fragments.forEach {
-                    (it as? MainFragment)?.setSortOrder(true)
+                    (it as? MainFragment)?.loadDataAndBuildModel()
                 }
             }
         }

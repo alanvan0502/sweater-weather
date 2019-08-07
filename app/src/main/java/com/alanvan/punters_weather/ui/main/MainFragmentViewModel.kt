@@ -7,13 +7,11 @@ import io.reactivex.Observable
 
 abstract class MainFragmentViewModel: ViewModel() {
 
-    var sortedAscending: Boolean = true
-
     protected val weatherRepository = Injector.getAppComponent().repositoryManager().getWeatherRepository()
 
-    abstract fun loadDataFromRepository(sortedAscending: Boolean): Observable<List<VenueWeatherData>>
+    abstract fun loadDataFromRepository(sortedAscending: Boolean, countryId: String?): Observable<List<VenueWeatherData>>
 
-    fun setSortOrder(sortedAscending: Boolean) {
-        this.sortedAscending = sortedAscending
+    fun loadDataFromRepositoryByCountryId(countryId: String?): Observable<List<VenueWeatherData>> {
+        return weatherRepository.onGetWeatherDataByCountryId(countryId)
     }
 }

@@ -10,13 +10,15 @@ import android.view.ViewGroup
 import com.airbnb.epoxy.EpoxyRecyclerView
 import com.alanvan.punters_weather.R
 import com.alanvan.punters_weather.ui.main.FilterEpoxyController
+import com.alanvan.punters_weather.ui.main.event.FilterEvent
+import com.alanvan.punters_weather.ui.main.event.PublishFilterEvents
 import com.alanvan.punters_weather.utils.RxUtils
 
-class FilterDialogFragment : DialogFragment() {
+class FilterDialogFragment : DialogFragment(), FilterEpoxyController.Callback {
 
     private lateinit var toolbar: android.support.v7.widget.Toolbar
     private var viewModel: FilterDialogViewModel? = null
-    private val epoxyController = FilterEpoxyController()
+    private val epoxyController = FilterEpoxyController(this)
 
     companion object {
         fun newInstance(): FilterDialogFragment {
@@ -60,6 +62,11 @@ class FilterDialogFragment : DialogFragment() {
                 // TODO: handle case no data or fail
             })
         }
+    }
+
+    override fun onItemClick(countryID: String?) {
+        PublishFilterEvents.instance.subject.onNext(FilterEvent(countryID))
+        dismiss()
     }
 
     override fun onStart() {

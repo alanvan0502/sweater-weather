@@ -6,7 +6,7 @@ import io.reactivex.Observable
 
 class LastUpdatedViewModel : MainFragmentViewModel() {
 
-    override fun loadDataFromRepository(sortedAscending: Boolean): Observable<List<VenueWeatherData>> {
-        return weatherRepository.onGetWeatherDataSortedByLastUpdated(sortedAscending)
+    override fun loadDataFromRepository(sortedAscending: Boolean, countryId: String?): Observable<List<VenueWeatherData>> {
+        return weatherRepository.onGetWeatherDataSortedByLastUpdated(sortedAscending, countryId)
     }
 }

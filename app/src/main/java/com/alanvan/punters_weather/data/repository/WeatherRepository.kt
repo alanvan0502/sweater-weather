@@ -8,11 +8,15 @@ interface WeatherRepository {
 
     fun syncWeatherData(): Observable<Boolean>
 
-    fun onGetWeatherDataSortedByAlphabet(sortedAscending: Boolean): Observable<List<VenueWeatherData>>
+    fun onGetWeatherDataSortedByAlphabet(sortedAscending: Boolean, countryId: String?): Observable<List<VenueWeatherData>>
 
-    fun onGetWeatherDataSortedByTemperature(sortedAscending: Boolean): Observable<List<VenueWeatherData>>
+    fun onGetWeatherDataSortedByTemperature(sortedAscending: Boolean, countryId: String?): Observable<List<VenueWeatherData>>
 
-    fun onGetWeatherDataSortedByLastUpdated(sortedAscending: Boolean): Observable<List<VenueWeatherData>>
+    fun onGetWeatherDataSortedByLastUpdated(sortedAscending: Boolean, countryId: String?): Observable<List<VenueWeatherData>>
+
+    fun onGetWeatherData(): Observable<List<VenueWeatherData>>
 
     fun onGetAllCountries(): Observable<List<Country>>
+
+    fun onGetWeatherDataByCountryId(countryId: String?): Observable<List<VenueWeatherData>>
 }

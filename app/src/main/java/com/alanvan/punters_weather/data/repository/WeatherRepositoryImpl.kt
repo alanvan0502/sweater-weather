@@ -18,20 +18,32 @@ class WeatherRepositoryImpl: WeatherRepository {
         }
     }
 
-    override fun onGetWeatherDataSortedByAlphabet(sortedAscending: Boolean): Observable<List<VenueWeatherData>> {
-        return localDataSource.onGetWeatherDataSortedByAlphabet(sortedAscending)
+    override fun onGetWeatherDataSortedByAlphabet(sortedAscending: Boolean, countryId: String?): Observable<List<VenueWeatherData>> {
+        return localDataSource.onGetWeatherDataSortedByAlphabet(sortedAscending, countryId)
     }
 
-    override fun onGetWeatherDataSortedByTemperature(sortedAscending: Boolean): Observable<List<VenueWeatherData>> {
-        return localDataSource.onGetWeatherDataSortedByTemperature(sortedAscending)
+    override fun onGetWeatherDataSortedByTemperature(sortedAscending: Boolean, countryId: String?): Observable<List<VenueWeatherData>> {
+        return localDataSource.onGetWeatherDataSortedByTemperature(sortedAscending, countryId)
     }
 
-    override fun onGetWeatherDataSortedByLastUpdated(sortedAscending: Boolean): Observable<List<VenueWeatherData>> {
-        return localDataSource.onGetWeatherDataSortedByLastUpdated(sortedAscending)
+    override fun onGetWeatherDataSortedByLastUpdated(sortedAscending: Boolean, countryId: String?): Observable<List<VenueWeatherData>> {
+        return localDataSource.onGetWeatherDataSortedByLastUpdated(sortedAscending, countryId)
+    }
+
+    override fun onGetWeatherData(): Observable<List<VenueWeatherData>> {
+        return localDataSource.onGetWeatherData()
     }
 
     override fun onGetAllCountries(): Observable<List<Country>> {
         return localDataSource.onGetAllCountries()
+    }
+
+    override fun onGetWeatherDataByCountryId(countryId: String?): Observable<List<VenueWeatherData>> {
+        return if (countryId == null) {
+            onGetWeatherData()
+        } else {
+            localDataSource.onGetWeatherDataByCountryId(countryId)
+        }
     }
 
 }
