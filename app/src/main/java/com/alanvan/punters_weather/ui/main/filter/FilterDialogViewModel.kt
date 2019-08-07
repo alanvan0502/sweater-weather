@@ -9,7 +9,8 @@ import io.reactivex.Observable
 
 class FilterDialogViewModel : ViewModel() {
 
-    private val weatherRepository = Injector.getAppComponent().repositoryManager().getWeatherRepository()
+    // for testing only - change to 'private val' in production code
+    var weatherRepository = Injector.getAppComponent().repositoryManager().getWeatherRepository()
 
     fun loadCountries(): Observable<List<Country>> {
         return weatherRepository.onGetAllCountries()

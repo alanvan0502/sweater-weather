@@ -7,7 +7,8 @@ import io.reactivex.Observable
 
 abstract class MainFragmentViewModel: ViewModel() {
 
-    protected val weatherRepository = Injector.getAppComponent().repositoryManager().getWeatherRepository()
+    // for testing only - change to 'protected val' in production code
+    var weatherRepository = Injector.getAppComponent().repositoryManager().getWeatherRepository()
 
     abstract fun loadDataFromRepository(sortedAscending: Boolean, countryId: String?): Observable<List<VenueWeatherData>>
 

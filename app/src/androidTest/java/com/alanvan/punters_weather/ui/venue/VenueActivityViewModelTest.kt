@@ -1,31 +1,38 @@
 package com.alanvan.punters_weather.ui.venue
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule
-import com.alanvan.punters_weather.data.repository.WeatherRepositoryImpl
+import android.support.test.runner.AndroidJUnit4
+import com.alanvan.punters_weather.data.model.VenueWeatherData
+import com.alanvan.punters_weather.data.repository.WeatherRepository
 import com.nhaarman.mockito_kotlin.mock
-import org.junit.After
+import com.nhaarman.mockito_kotlin.whenever
+import io.reactivex.Observable
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
 
-import org.junit.Assert.*
-import org.junit.Rule
-
+@RunWith(AndroidJUnit4::class)
 class VenueActivityViewModelTest {
-    @Rule
-    @JvmField
-    var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    private val mockWeatherRepository: WeatherRepositoryImpl = mock()
+    private val mockWeatherRepository: WeatherRepository = mock()
+    private val viewModel = VenueActivityViewModel()
 
     @Before
     fun setUp() {
-    }
-
-    @After
-    fun tearDown() {
+        viewModel.weatherRepository = mockWeatherRepository
     }
 
     @Test
     fun getVenueWeatherDataById() {
+        stubWeatherRepositoryOnGetWeatherDataByVenueId("id_111")
+        val data = viewModel.getVenueWeatherDataById("id_111").blockingFirst()
+        assertTrue(data.getVenueID() == "id_111")
+    }
+
+    private fun stubWeatherRepositoryOnGetWeatherDataByVenueId(venueId: String) {
+        whenever(mockWeatherRepository.onGetWeatherDataByVenueId(venueId))
+            .thenReturn(Observable.just(VenueWeatherData().apply {
+                setVenueID(venueId)
+            }))
     }
 }

@@ -9,7 +9,8 @@ class VenueActivityViewModel : ViewModel() {
 
     var venueId: String? = null
 
-    private val weatherRepository = Injector.getAppComponent().repositoryManager().getWeatherRepository()
+    // for testing only - change to 'private val' in production code
+    var weatherRepository = Injector.getAppComponent().repositoryManager().getWeatherRepository()
 
     fun getVenueWeatherDataById(venueId: String): Observable<VenueWeatherData> {
         return weatherRepository.onGetWeatherDataByVenueId(venueId)
