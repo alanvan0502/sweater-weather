@@ -7,6 +7,6 @@ import io.reactivex.Observable
 class TemperatureViewModel : MainFragmentViewModel() {
 
     override fun loadDataFromRepository(sortedAscending: Boolean): Observable<List<VenueWeatherData>> {
-        return weatherRepository.onGetWeatherDataByTemperature(sortedAscending)
+        return weatherRepository.onGetWeatherDataSortedByTemperature(sortedAscending)
     }
 }

@@ -70,7 +70,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:orientation="vertical"
-            android:background="@android:color/white">
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
 
         <View android:layout_width="match_parent"
               android:layout_height="2dp"
@@ -86,9 +88,7 @@
                 android:paddingBottom="16dp"
                 android:paddingTop="16dp"
                 android:layout_margin="0dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackground"/>
+/>
     </LinearLayout>
 
 

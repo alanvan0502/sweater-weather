@@ -2,6 +2,7 @@ package com.alanvan.punters_weather.data.repository
 
 import com.alanvan.punters_weather.data.data_source.LocalDataSource
 import com.alanvan.punters_weather.data.data_source.RemoteDataSource
+import com.alanvan.punters_weather.data.model.Country
 import com.alanvan.punters_weather.data.model.VenueWeatherData
 import io.reactivex.Observable
 
@@ -17,16 +18,20 @@ class WeatherRepositoryImpl: WeatherRepository {
         }
     }
 
-    override fun onGetWeatherDataByAlphabet(sortedAscending: Boolean): Observable<List<VenueWeatherData>> {
-        return localDataSource.onGetWeatherDataByAlphabet(sortedAscending)
+    override fun onGetWeatherDataSortedByAlphabet(sortedAscending: Boolean): Observable<List<VenueWeatherData>> {
+        return localDataSource.onGetWeatherDataSortedByAlphabet(sortedAscending)
     }
 
-    override fun onGetWeatherDataByTemperature(sortedAscending: Boolean): Observable<List<VenueWeatherData>> {
-        return localDataSource.onGetWeatherDataByTemperature(sortedAscending)
+    override fun onGetWeatherDataSortedByTemperature(sortedAscending: Boolean): Observable<List<VenueWeatherData>> {
+        return localDataSource.onGetWeatherDataSortedByTemperature(sortedAscending)
     }
 
-    override fun onGetWeatherDataByLastUpdated(sortedAscending: Boolean): Observable<List<VenueWeatherData>> {
-        return localDataSource.onGetWeatherDataByLastUpdated(sortedAscending)
+    override fun onGetWeatherDataSortedByLastUpdated(sortedAscending: Boolean): Observable<List<VenueWeatherData>> {
+        return localDataSource.onGetWeatherDataSortedByLastUpdated(sortedAscending)
+    }
+
+    override fun onGetAllCountries(): Observable<List<Country>> {
+        return localDataSource.onGetAllCountries()
     }
 
 }

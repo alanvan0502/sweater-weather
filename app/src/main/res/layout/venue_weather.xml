@@ -17,7 +17,7 @@
 
         <TextView
                 android:id="@+id/venue_name"
-                tools:text="@string/venue_name"
+                tools:text="Venue Name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
@@ -29,7 +29,7 @@
                 app:layout_constraintTop_toTopOf="parent"/>
         <TextView
                 android:id="@+id/venue_temperature"
-                tools:text="@string/venue_temperature"
+                tools:text="0℃"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_regular"
@@ -41,7 +41,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"/>
         <TextView
                 android:id="@+id/venue_condition"
-                tools:text="@string/venue_condition"
+                tools:text="Condition"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_regular"

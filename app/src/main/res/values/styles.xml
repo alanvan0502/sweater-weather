@@ -19,11 +19,21 @@
         <item name="android:textAllCaps">false</item>
     </style>
 
-    <!--Tab layout-->
+    <!--Progress bar-->
     <style name="CircularProgressBar" parent="Widget.AppCompat.ProgressBar">
         <item name="android:layout_height">40dp</item>
         <item name="android:layout_width">40dp</item>
         <item name="android:layout_gravity">center</item>
+    </style>
+
+    <!--Filter dialog-->
+    <style name="FilterDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowAnimationStyle">@style/DialogAnimationStyle</item>
+    </style>
+
+    <style name="DialogAnimationStyle">
+        <item name="android:windowEnterAnimation">@anim/dialog_anim_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_anim_out</item>
     </style>
 
 </resources>

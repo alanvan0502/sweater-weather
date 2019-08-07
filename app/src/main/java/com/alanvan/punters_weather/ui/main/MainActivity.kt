@@ -11,9 +11,12 @@ import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.ProgressBar
+import android.widget.RelativeLayout
 import android.widget.TextView
 import com.alanvan.punters_weather.R
+import com.alanvan.punters_weather.ui.main.filter.FilterDialogFragment
 import com.alanvan.punters_weather.utils.RxUtils
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -24,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager
     private lateinit var viewPagerContainer: SwipeRefreshLayout
-    private lateinit var filterButton: TextView
+    private lateinit var filterButtonContainer: LinearLayout
     private lateinit var progressBar: ProgressBar
     private lateinit var pagerAdapter: PagerAdapter
     private lateinit var viewModel: MainActivityViewModel
@@ -87,12 +90,21 @@ class MainActivity : AppCompatActivity() {
         }
 
         // setup filter button
-        filterButton = findViewById(R.id.action_filter)
-        filterButton.setOnClickListener {
+        filterButtonContainer = findViewById(R.id.action_filter)
+        filterButtonContainer.setOnClickListener {
             if (showLoading || viewPagerContainer.isRefreshing) {
                 return@setOnClickListener
             }
             // add filter dialog fragment here
+            val filterFragment = FilterDialogFragment.newInstance()
+
+            val fragmentTransaction = supportFragmentManager.beginTransaction()
+            fragmentTransaction.also { ft ->
+                val tag = FilterDialogFragment::class.java.name
+                ft.add(R.id.activity_main, filterFragment, tag)
+                ft.addToBackStack(tag)
+            }
+            fragmentTransaction.commit()
         }
     }
 

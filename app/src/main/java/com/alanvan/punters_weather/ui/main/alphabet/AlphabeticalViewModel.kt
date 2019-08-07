@@ -7,6 +7,6 @@ import io.reactivex.Observable
 class AlphabeticalViewModel : MainFragmentViewModel() {
 
     override fun loadDataFromRepository(sortedAscending: Boolean): Observable<List<VenueWeatherData>> {
-        return weatherRepository.onGetWeatherDataByAlphabet(sortedAscending)
+        return weatherRepository.onGetWeatherDataSortedByAlphabet(sortedAscending)
     }
 }
