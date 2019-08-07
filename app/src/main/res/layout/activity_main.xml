@@ -87,8 +87,7 @@
                 android:textAlignment="center"
                 android:paddingBottom="16dp"
                 android:paddingTop="16dp"
-                android:layout_margin="0dp"
-/>
+                android:layout_margin="0dp"/>
     </LinearLayout>
 
 

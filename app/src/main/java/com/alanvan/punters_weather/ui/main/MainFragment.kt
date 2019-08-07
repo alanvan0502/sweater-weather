@@ -1,5 +1,6 @@
 package com.alanvan.punters_weather.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,18 +10,21 @@ import com.alanvan.punters_weather.R
 import com.alanvan.punters_weather.RxFragment
 import com.alanvan.punters_weather.ui.main.event.FilterEvent
 import com.alanvan.punters_weather.ui.main.event.PublishFilterEvents
+import com.alanvan.punters_weather.ui.venue.VenueActivity
 import com.alanvan.punters_weather.utils.RxUtils
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
-abstract class MainFragment : RxFragment() {
+abstract class MainFragment : RxFragment(), MainEpoxyController.Callback {
 
     private val bag = CompositeDisposable()
-    open val epoxyController = MainEpoxyController()
+    private lateinit var epoxyController: MainEpoxyController
     open var viewModel: MainFragmentViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        epoxyController = MainEpoxyController(this)
 
         // Listen to filter events & clear filter events
         bag.add(
@@ -74,6 +78,12 @@ abstract class MainFragment : RxFragment() {
             epoxyController.setData(dataList)
             epoxyController.requestModelBuild()
         }?.compose(RxUtils.applyIOSchedulers())?.subscribe()
+    }
+
+    override fun onItemClicked(venueId: String) {
+        val intent = Intent(context, VenueActivity::class.java)
+        intent.putExtra(VenueActivity.VENUE_ID_EXTRA, venueId)
+        context?.startActivity(intent)
     }
 
     override fun onDestroy() {
