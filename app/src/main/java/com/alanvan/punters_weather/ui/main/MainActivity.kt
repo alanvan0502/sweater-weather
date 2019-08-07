@@ -77,7 +77,9 @@ class MainActivity : AppCompatActivity() {
         pagerAdapter = PagerAdapter(supportFragmentManager, tabLayout.tabCount)
         viewPager.adapter = pagerAdapter
 
-        viewPager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
+        val pageChangeListener = TabLayoutPageChangeListener(tabLayout, viewPagerContainer)
+
+        viewPager.addOnPageChangeListener(pageChangeListener)
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
 
             override fun onTabReselected(tab: TabLayout.Tab) {
