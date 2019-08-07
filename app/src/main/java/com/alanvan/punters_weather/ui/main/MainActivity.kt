@@ -111,14 +111,7 @@ class MainActivity : AppCompatActivity() {
             }
             // add filter dialog fragment here
             val filterFragment = FilterDialogFragment.newInstance()
-
-            val fragmentTransaction = supportFragmentManager.beginTransaction()
-            fragmentTransaction.also { ft ->
-                val tag = FilterDialogFragment::class.java.name
-                ft.add(R.id.activity_main, filterFragment, tag)
-                ft.addToBackStack(tag)
-            }
-            fragmentTransaction.commit()
+            filterFragment.show(supportFragmentManager, FilterDialogFragment::class.java.name)
         }
     }
 

@@ -7,6 +7,7 @@ import android.support.v4.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import com.airbnb.epoxy.EpoxyRecyclerView
 import com.alanvan.punters_weather.R
 import com.alanvan.punters_weather.ui.main.FilterEpoxyController
@@ -52,16 +53,10 @@ class FilterDialogFragment : DialogFragment(), FilterEpoxyController.Callback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel?.let{
-            it.loadCountries().map {  dataList ->
-                epoxyController.setData(dataList)
-                epoxyController.requestModelBuild()
-            }.compose(RxUtils.applyIOSchedulers()).subscribe({
-                // TODO: handle case no data or fail
-            }, {
-                // TODO: handle case no data or fail
-            })
-        }
+        viewModel?.loadCountries()?.map { dataList ->
+            epoxyController.setData(dataList)
+            epoxyController.requestModelBuild()
+        }?.compose(RxUtils.applyIOSchedulers())?.subscribe()
     }
 
     override fun onItemClick(countryID: String?) {
