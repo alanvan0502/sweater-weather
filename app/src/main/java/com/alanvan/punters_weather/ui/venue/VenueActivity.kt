@@ -124,14 +124,14 @@ class VenueActivity : AppCompatActivity() {
         val humidity = if (data.getWeatherHumidity() == null) {
             getString(R.string.venue_humidity_no_data)
         } else {
-            data.getWeatherHumidity() + "%"
+            data.getWeatherHumidity()?.replace("Humidity: ", "")
         }
         humidityTv.text = humidity
 
         val wind = if (data.getWeatherWind() == null) {
             getString(R.string.venue_wind_no_data)
         } else {
-            data.getWeatherWind()
+            data.getWeatherWind()?.replace("Wind: ", "")
         }
         windTv.text = wind
     }
