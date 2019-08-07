@@ -31,5 +31,6 @@ abstract class WeatherDao : BaseDao<VenueWeatherData>() {
     @Query("SELECT * FROM VenueWeatherData")
     abstract fun getWeatherData(): List<VenueWeatherData>
 
-
+    @Query("SELECT * FROM VenueWeatherData WHERE _venueID IS :venueId")
+    abstract fun getWeatherDataByVenueId(venueId: String): VenueWeatherData
 }

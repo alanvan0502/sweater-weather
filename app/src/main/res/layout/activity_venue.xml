@@ -5,17 +5,14 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingStart="24dp"
-        android:paddingEnd="24dp"
-        android:paddingTop="24dp"
         android:orientation="vertical"
-        tools:context=".ui.venue.VenueActivity" android:id="@+id/linearLayout">
+        tools:context=".ui.venue.VenueActivity"
+        android:id="@+id/container">
 
     <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:background="?attr/colorPrimary"
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
@@ -36,10 +33,13 @@
     <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="24dp"
             android:paddingBottom="8dp">
         <TextView
                 android:id="@+id/venue_name"
-                tools:text="Venue Name"
+                android:text="@string/venue_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
@@ -62,7 +62,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"/>
         <TextView
                 android:id="@+id/venue_condition"
-                tools:text="Condition"
+                android:text="@string/venue_condition_unknown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_regular"
@@ -76,6 +76,9 @@
     <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="24dp"
             android:paddingBottom="8dp">
 
         <LinearLayout
@@ -153,8 +156,10 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:id="@+id/linearLayout3"
-                app:layout_constraintVertical_bias="0.0" android:layout_marginEnd="8dp"
+                app:layout_constraintVertical_bias="0.0"
+                android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent">
+
             <TextView
                     android:id="@+id/venue_wind"
                     android:text="@string/venue_wind"
@@ -178,11 +183,16 @@
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 
-    <TextView android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:textSize="12sp"
-              tools:text="Last updated: 9:00am 01 December 2017"
-              android:textAlignment="center"/>
+    <TextView
+            android:id="@+id/venue_last_updated"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="24dp"
+            android:textSize="12sp"
+            tools:text="Last updated: 9:00am 01 December 2017"
+            android:textAlignment="center"/>
 
 
 </LinearLayout>

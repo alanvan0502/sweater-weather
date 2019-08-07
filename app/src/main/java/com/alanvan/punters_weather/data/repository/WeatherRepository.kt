@@ -19,4 +19,6 @@ interface WeatherRepository {
     fun onGetAllCountries(): Observable<List<Country>>
 
     fun onGetWeatherDataByCountryId(countryId: String?): Observable<List<VenueWeatherData>>
+
+    fun onGetWeatherDataByVenueId(venueId: String): Observable<VenueWeatherData>
 }

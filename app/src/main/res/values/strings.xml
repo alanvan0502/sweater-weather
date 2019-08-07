@@ -3,7 +3,6 @@
     <string name="alphabetical_title">A-Z</string>
     <string name="temperature_title">Temperature</string>
     <string name="last_updated_title">Last updated</string>
-    <string name="venue_name">Venue Name</string>
     <string name="venue_condition">Condition</string>
     <string name="country_name">Country name</string>
     <string name="venue_condition_unknown">Condition Unknown</string>
@@ -15,6 +14,13 @@
     <string name="action_clear_sort">Clear sort</string>
     <string name="filter_by_country">Filter by country</string>
     <string name="venue_feels_like">Feels Like</string>
+    <string name="venue_feels_like_no_data">- ℃</string>
+    <string name="venue_updated_at">Last updated:</string>
+    <string name="venue_updated_at_no_data">Last updated: Unknown</string>
     <string name="venue_humidity">Humidity</string>
+    <string name="venue_humidity_no_data">- %</string>
     <string name="venue_wind">Wind</string>
+    <string name="venue_wind_no_data">-</string>
+    <string name="venue_name">Venue Name</string>
+    <string name="condition_no_data">No data</string>
 </resources>

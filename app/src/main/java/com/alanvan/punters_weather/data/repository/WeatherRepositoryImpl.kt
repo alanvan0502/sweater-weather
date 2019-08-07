@@ -46,4 +46,7 @@ class WeatherRepositoryImpl: WeatherRepository {
         }
     }
 
+    override fun onGetWeatherDataByVenueId(venueId: String): Observable<VenueWeatherData> {
+        return localDataSource.onGetWeatherDataByVenueId(venueId)
+    }
 }

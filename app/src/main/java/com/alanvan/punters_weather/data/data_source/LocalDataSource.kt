@@ -87,15 +87,15 @@ class LocalDataSource {
         return Observable.fromCallable { weatherDao.getWeatherData() }
     }
 
-    fun getVenueWeather(venueId: Int): Observable<VenueWeatherData> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     fun onGetAllCountries(): Observable<List<Country>> {
         return Observable.fromCallable { countryDao.getAllCountries() }
     }
 
     fun onGetWeatherDataByCountryId(countryId: String): Observable<List<VenueWeatherData>> {
         return Observable.fromCallable { weatherDao.getWeatherDataByCountryId(countryId) }
+    }
+
+    fun onGetWeatherDataByVenueId(venueId: String): Observable<VenueWeatherData> {
+        return Observable.fromCallable { weatherDao.getWeatherDataByVenueId(venueId) }
     }
 }
