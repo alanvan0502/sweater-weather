@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="weather_color">#8000BCD4</color>
+    <color name="colorPrimary">#1B3644</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#36AFB7</color>
+    <color name="weather_color">#92D8DB</color>
+    <color name="text_color">#99999B</color>
+    <color name="text_color_dark">#666666</color>
+    <color name="tab_indicator_color">#36AFB7</color>
 </resources>

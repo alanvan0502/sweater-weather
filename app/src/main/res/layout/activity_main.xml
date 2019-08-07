@@ -34,10 +34,33 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/toolbar"
-            android:background="?attr/colorPrimary"
+            android:background="?attr/selectableItemBackground"
             android:minHeight="?attr/actionBarSize"
-            app:tabTextColor="@android:color/white"
-            style="@style/CustomTabLayout"/>
+            app:tabTextColor="@color/text_color"
+            app:tabSelectedTextColor="@color/text_color_dark"
+            app:tabGravity="fill"
+            app:tabMaxWidth="0dp"
+            app:tabMode="fixed"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            style="@style/CustomTabLayout">
+
+        <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/alphabetical_title"/>
+
+        <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/temperature_title"/>
+
+        <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/last_updated_title"/>
+
+    </android.support.design.widget.TabLayout>
 
     <FrameLayout
             android:layout_width="match_parent"
@@ -75,7 +98,7 @@
             android:background="?attr/selectableItemBackground">
 
         <View android:layout_width="match_parent"
-              android:layout_height="2dp"
+              android:layout_height="0.5dp"
               android:background="@drawable/divider_gradient"
               app:layout_constraintBottom_toBottomOf="parent"/>
 
@@ -83,7 +106,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/action_filter"
+                android:fontFamily="@font/roboto_regular"
                 android:textSize="16sp"
+                android:textColor="@color/text_color"
                 android:textAlignment="center"
                 android:paddingBottom="16dp"
                 android:paddingTop="16dp"

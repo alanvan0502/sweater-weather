@@ -65,12 +65,7 @@ class MainActivity : AppCompatActivity() {
         progressBar = findViewById(R.id.progressBar)
 
         // setup tabLayout
-        tabLayout = findViewById<TabLayout>(R.id.tab_layout).apply {
-            addTab(this.newTab().setText(context.getString(R.string.alphabetical_title)))
-            addTab(this.newTab().setText(context.getString(R.string.temperature_title)))
-            addTab(this.newTab().setText(context.getString(R.string.last_updated_title)))
-            tabGravity = TabLayout.GRAVITY_FILL
-        }
+        tabLayout = findViewById(R.id.tab_layout)
 
         viewPagerContainer = findViewById(R.id.pager_container)
         viewPager = findViewById(R.id.pager)
