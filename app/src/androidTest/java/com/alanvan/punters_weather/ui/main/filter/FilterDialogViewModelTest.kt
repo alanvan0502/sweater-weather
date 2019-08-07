@@ -28,7 +28,7 @@ class FilterDialogViewModelTest {
         val result = viewModel.loadCountries().blockingFirst()
         assert(result.size == 100)
     }
-    
+
     private fun stubOnGetAllCountries() {
         val mockData = ArrayList<Country>()
         for (i in 0 until 100) {

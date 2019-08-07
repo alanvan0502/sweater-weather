@@ -1,16 +1,21 @@
 package com.alanvan.punters_weather.data.data_source
 
+import com.alanvan.punters_weather.data.dao.CountryDao
+import com.alanvan.punters_weather.data.dao.SportDao
+import com.alanvan.punters_weather.data.dao.WeatherDao
 import com.alanvan.punters_weather.data.model.Country
 import com.alanvan.punters_weather.data.model.Sport
 import com.alanvan.punters_weather.data.model.VenueWeatherData
 import com.alanvan.punters_weather.data.room.WeatherDataBase
 import io.reactivex.Observable
 
-class LocalDataSource {
+// open for testing only, for production code, remove 'open' access modifier
+open class LocalDataSource {
 
-    private val weatherDao = WeatherDataBase.getDatabase().weatherDao()
-    private val countryDao = WeatherDataBase.getDatabase().countryDao()
-    private val sportDao = WeatherDataBase.getDatabase().sportDao()
+    // 'var' for testing only, for production code, change to 'val' and remove setters
+    private var weatherDao = WeatherDataBase.getDatabase().weatherDao()
+    private var countryDao = WeatherDataBase.getDatabase().countryDao()
+    private var sportDao = WeatherDataBase.getDatabase().sportDao()
 
     companion object {
         @Volatile
@@ -97,5 +102,26 @@ class LocalDataSource {
 
     fun onGetWeatherDataByVenueId(venueId: String): Observable<VenueWeatherData> {
         return Observable.fromCallable { weatherDao.getWeatherDataByVenueId(venueId) }
+    }
+
+    /**
+     * For testing only, do not use in production code. To remove.
+     */
+    fun setWeatherDao(weatherDao: WeatherDao) {
+        this.weatherDao = weatherDao
+    }
+
+    /**
+     * For testing only, do not use in production code. To remove.
+     */
+    fun setSportDao(sportDao: SportDao) {
+        this.sportDao = sportDao
+    }
+
+    /**
+     * For testing only, do not use in production code. To remove.
+     */
+    fun setCountryDao(countryDao: CountryDao) {
+        this.countryDao = countryDao
     }
 }

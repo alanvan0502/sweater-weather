@@ -4,7 +4,8 @@ import com.alanvan.punters_weather.data.model.VenueWeatherData
 import com.alanvan.punters_weather.injection.Injector
 import io.reactivex.Observable
 
-class RemoteDataSource {
+// open for testing only, for production code, remove 'open' access modifier
+open class RemoteDataSource {
 
     companion object {
 
