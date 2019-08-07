@@ -14,4 +14,3 @@ class PublishFilterEvents private constructor() {
 abstract class BaseFilterEvent(val countryId: String? = null)
 
 class FilterEvent(countryId: String?) : BaseFilterEvent(countryId)
-class ClearFilterEvent() : BaseFilterEvent()

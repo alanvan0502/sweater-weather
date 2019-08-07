@@ -5,17 +5,18 @@ import com.airbnb.epoxy.EpoxyHolder
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
-abstract class KotlinEpoxyHolder: EpoxyHolder() {
+abstract class KotlinEpoxyHolder : EpoxyHolder() {
     lateinit var itemView: View
 
     override fun bindView(itemView: View) {
         this.itemView = itemView
     }
 
-    protected fun <V : View> bind(id: Int): ReadOnlyProperty<KotlinEpoxyHolder, V> = Lazy { holder: KotlinEpoxyHolder, prop ->
-        holder.itemView.findViewById(id) as V?
-            ?: throw IllegalStateException("View ID $id for '${prop.name}' not found.")
-    }
+    protected fun <V : View> bind(id: Int): ReadOnlyProperty<KotlinEpoxyHolder, V> =
+        Lazy { holder: KotlinEpoxyHolder, prop ->
+            holder.itemView.findViewById(id) as V?
+                ?: throw IllegalStateException("View ID $id for '${prop.name}' not found.")
+        }
 
     /**
      * Taken from Kotterknife.

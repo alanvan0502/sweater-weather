@@ -17,13 +17,22 @@ abstract class WeatherDao : BaseDao<VenueWeatherData>() {
     abstract fun getWeatherDataSortedByByLastUpdated(sortedAscending: Boolean): List<VenueWeatherData>
 
     @Query("SELECT * FROM VenueWeatherData WHERE _countryID IS :countryId ORDER BY CASE WHEN :sortedAscending = 1 THEN _name END ASC, CASE WHEN :sortedAscending = 0 THEN _name END DESC")
-    abstract fun getWeatherDataSortedByAlphabetFiltered(sortedAscending: Boolean, countryId: String): List<VenueWeatherData>
+    abstract fun getWeatherDataSortedByAlphabetFiltered(
+        sortedAscending: Boolean,
+        countryId: String
+    ): List<VenueWeatherData>
 
     @Query("SELECT * FROM VenueWeatherData WHERE _countryID IS :countryId ORDER BY CASE WHEN :sortedAscending = 1 THEN _weatherTemp END ASC, CASE WHEN :sortedAscending = 0 THEN _weatherTemp END DESC")
-    abstract fun getWeatherDataSortedByTemperatureFiltered(sortedAscending: Boolean, countryId: String): List<VenueWeatherData>
+    abstract fun getWeatherDataSortedByTemperatureFiltered(
+        sortedAscending: Boolean,
+        countryId: String
+    ): List<VenueWeatherData>
 
     @Query("SELECT * FROM VenueWeatherData WHERE _countryID IS :countryId ORDER BY CASE WHEN :sortedAscending = 1 THEN _weatherLastUpdated END ASC, CASE WHEN :sortedAscending = 0 THEN _weatherLastUpdated END DESC")
-    abstract fun getWeatherDataSortedByByLastUpdatedFiltered(sortedAscending: Boolean, countryId: String): List<VenueWeatherData>
+    abstract fun getWeatherDataSortedByByLastUpdatedFiltered(
+        sortedAscending: Boolean,
+        countryId: String
+    ): List<VenueWeatherData>
 
     @Query("SELECT * FROM VenueWeatherData WHERE _countryID IS :countryId")
     abstract fun getWeatherDataByCountryId(countryId: String): List<VenueWeatherData>

@@ -58,7 +58,10 @@ open class LocalDataSource {
         }
     }
 
-    fun onGetWeatherDataSortedByAlphabet(sortedAscending: Boolean, countryId: String?): Observable<List<VenueWeatherData>> {
+    fun onGetWeatherDataSortedByAlphabet(
+        sortedAscending: Boolean,
+        countryId: String?
+    ): Observable<List<VenueWeatherData>> {
         return Observable.fromCallable {
             return@fromCallable if (countryId == null) {
                 weatherDao.getWeatherDataSortedByAlphabet(sortedAscending)
@@ -68,7 +71,10 @@ open class LocalDataSource {
         }
     }
 
-    fun onGetWeatherDataSortedByTemperature(sortedAscending: Boolean, countryId: String?): Observable<List<VenueWeatherData>> {
+    fun onGetWeatherDataSortedByTemperature(
+        sortedAscending: Boolean,
+        countryId: String?
+    ): Observable<List<VenueWeatherData>> {
         return Observable.fromCallable {
             return@fromCallable if (countryId == null) {
                 weatherDao.getWeatherDataSortedByTemperature(sortedAscending)
@@ -78,7 +84,10 @@ open class LocalDataSource {
         }
     }
 
-    fun onGetWeatherDataSortedByLastUpdated(sortedAscending: Boolean, countryId: String?): Observable<List<VenueWeatherData>> {
+    fun onGetWeatherDataSortedByLastUpdated(
+        sortedAscending: Boolean,
+        countryId: String?
+    ): Observable<List<VenueWeatherData>> {
         return Observable.fromCallable {
             return@fromCallable if (countryId == null) {
                 weatherDao.getWeatherDataSortedByByLastUpdated(sortedAscending)
