@@ -18,12 +18,4 @@ class LastUpdatedFragment : MainFragment() {
         viewModel = ViewModelProviders.of(this).get(LastUpdatedViewModel::class.java)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-        val view = inflater.inflate(R.layout.fragment_last_updated, container, false)
-        val recyclerView: EpoxyRecyclerView = view.findViewById(R.id.recyclerView)
-        recyclerView.setController(epoxyController)
-
-        return view
-    }
 }

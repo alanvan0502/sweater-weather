@@ -1,8 +1,11 @@
 package com.alanvan.punters_weather.ui.main
 
 import android.os.Bundle
-import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import com.airbnb.epoxy.EpoxyRecyclerView
+import com.alanvan.punters_weather.R
 import com.alanvan.punters_weather.RxFragment
 import com.alanvan.punters_weather.ui.main.event.FilterEvent
 import com.alanvan.punters_weather.ui.main.event.PublishFilterEvents
@@ -30,6 +33,15 @@ abstract class MainFragment : RxFragment() {
                 }
             }
         )
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        val view = inflater.inflate(R.layout.fragment_main, container, false)
+        val recyclerView: EpoxyRecyclerView = view.findViewById(R.id.recyclerView)
+        recyclerView.setController(epoxyController)
+
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

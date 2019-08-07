@@ -12,4 +12,5 @@
     <string name="sort_ascending">Sort ascending</string>
     <string name="clear_filter">Clear filter</string>
     <string name="action_filter">Filter</string>
+    <string name="action_clear_sort">Clear sort</string>
 </resources>

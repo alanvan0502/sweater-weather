@@ -129,18 +129,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_sort_descending -> {
-                viewModel.sortedAscending = false
-                supportFragmentManager.fragments.forEach {
-                    (it as? MainFragment)?.loadDataAndBuildModel()
-                }
-            }
+            R.id.action_sort_descending -> viewModel.sortedAscending = false
+            R.id.action_sort_ascending -> viewModel.sortedAscending = true
+            R.id.action_clear_sort -> viewModel.sortedAscending = null
+            R.id.action_clear_filter -> viewModel.countryId = null
             else -> {
-                viewModel.sortedAscending = true
-                supportFragmentManager.fragments.forEach {
-                    (it as? MainFragment)?.loadDataAndBuildModel()
-                }
+                // not applicable
             }
+        }
+        supportFragmentManager.fragments.forEach {
+            (it as? MainFragment)?.loadDataAndBuildModel()
         }
         return true
     }

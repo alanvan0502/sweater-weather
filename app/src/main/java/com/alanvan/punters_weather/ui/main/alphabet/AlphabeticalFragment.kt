@@ -20,12 +20,4 @@ class AlphabeticalFragment : MainFragment() {
         viewModel = ViewModelProviders.of(this).get(AlphabeticalViewModel::class.java)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-        val view = inflater.inflate(R.layout.fragment_alphabetical, container, false)
-        val recyclerView: EpoxyRecyclerView = view.findViewById(R.id.recyclerView)
-        recyclerView.setController(epoxyController)
-
-        return view
-    }
 }
