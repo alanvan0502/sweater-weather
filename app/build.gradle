@@ -72,6 +72,7 @@ dependencies {
 
     implementation "com.squareup.okhttp3:okhttp:3.12.1"
     implementation "com.squareup.okhttp3:okhttp-urlconnection:3.12.1"
+    implementation 'com.github.pwittchen:reactivenetwork-rx2:3.0.2'
 
     implementation "android.arch.persistence.room:runtime:1.1.1"
     annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'

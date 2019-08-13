@@ -8,14 +8,19 @@ import android.support.v4.view.ViewPager
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.ProgressBar
+import android.widget.Toast
 import com.alanvan.punters_weather.R
 import com.alanvan.punters_weather.ui.main.filter.FilterDialogFragment
 import com.alanvan.punters_weather.utils.RxUtils
+import com.github.pwittchen.reactivenetwork.library.rx2.ReactiveNetwork
+import com.github.pwittchen.reactivenetwork.library.rx2.internet.observing.InternetObservingSettings
+import com.github.pwittchen.reactivenetwork.library.rx2.internet.observing.strategy.SocketInternetObservingStrategy
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
@@ -151,12 +156,39 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun syncWeatherData(): Disposable {
-        return viewModel.syncWeatherData().compose(RxUtils.applyIOSchedulers()).subscribe({
-            showLoading(false)
-            viewPagerContainer.isRefreshing = false
-        }, {
-            //TODO: handle
-        })
+    private fun syncWeatherData(): CompositeDisposable {
+
+        val compositeDisposable = CompositeDisposable()
+
+        val settings = InternetObservingSettings.builder()
+            .host("http://dnu5embx6omws.cloudfront.net")
+            .strategy(SocketInternetObservingStrategy())
+            .build()
+
+        compositeDisposable.add(ReactiveNetwork.observeInternetConnectivity(settings)
+            .compose(RxUtils.applyIOSchedulers())
+            .subscribe({ isConnectedToHost ->
+                if (isConnectedToHost) {
+                    compositeDisposable.add(
+                        viewModel.syncWeatherData().compose(RxUtils.applyIOSchedulers()).subscribe(
+                            {
+                                showLoading(false)
+                                viewPagerContainer.isRefreshing = false
+                            },
+                            {
+                                Log.d("syncWeatherData()", "error")
+                            })
+                    )
+                } else {
+                    Toast.makeText(this, "No internet connection!", Toast.LENGTH_SHORT).show()
+                    showLoading(false)
+                    viewPagerContainer.isRefreshing = false
+                }
+            }, {
+                Log.d("syncWeatherData()", "error checking reachability")
+            })
+        )
+
+        return compositeDisposable
     }
 }
