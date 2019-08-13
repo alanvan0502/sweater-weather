@@ -3,7 +3,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                tools:context="com.alanvan.punters_weather.ui.main.MainActivity">
+                tools:context="com.alanvan.sweater_weather.ui.main.MainActivity">
 
     <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
